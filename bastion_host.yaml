@@ -40,15 +40,17 @@
 
     - name: Create EC2 instance
       amazon.aws.ec2_instance:
-        key_name: vprofile-key
-        vpc_subnet_id: "{{PubSub1a}}"
-        region: "{{region}}"
+        name: Bastion Host
         instance_type: t2.micro
-        image_id: "{{bastion_ami}}"
-        wait: yes
-        wait_timeout: 300
-        count: 1
+        image_id: "{{ bastion_ami }}"
+        region: "{{region}}"
+        key_name: "vprofile-key"
+        vpc_subnet_id: "{{ PubSub1a }}"
+        security_group: "{{ sg_out.group_id }}"
+        network:
+          assign_public_ip: true
         tags:
-          Name: "BastionHost"
-        group_Id: "{{sg_out.group_id}}"
+          Name: "Bastion Host"
+          Environment: Testing
+        wait: true
       register: bastionHost_out
