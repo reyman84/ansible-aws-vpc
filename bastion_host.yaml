@@ -1,0 +1,23 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Import VPC setup file
+      include_vars: vars/vpc_setup
+
+    - name: Import Output Variables
+      include_vars: vars/output_vars
+
+    - name: Create key pair
+      aws_ec2_key:
+        name: vprofile-key
+        region: "{{ region }}"
+      register: key_out
+
+    - debug:
+        var: key_out
+      
+    #- name: Save private key
+    #  copy: 
+    #    content: "{{key_out}}"
+    #    dest: ./
