@@ -5,7 +5,7 @@
     - name: Import VPC variable
       include_vars: vars/vpc_setup
 
-    - name: Create Vprofile VPC
+    - name: Vprofile VPC
       ec2_vpc_net:
         name: "{{vpc_name}}"
         cidr_block: "{{vpcCidr}}"
@@ -16,19 +16,7 @@
         state: "{{state}}"
       register: vpcout
 
-    - name: Creating Internet Gateway
-      ec2_vpc_igw:
-        vpc_id: "{{ vpcout.vpc.id }}"
-        region: "{{ region }}"
-        state: present
-        tags:
-          Name: "Vprofile_IGT"
-      register: igw
-    #- name: Debug IGW Output 
-    #  debug:
-    #    var: igw
-
-    - name: Create Public Subnet 1a
+    - name: Public Subnet 1a
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
@@ -40,7 +28,7 @@
           Name: Vprofile_pubsub1
       register: pubsub1_out
 
-    - name: Create Public Subnet 1b
+    - name: Public Subnet 1b
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
@@ -52,7 +40,7 @@
           Name: Vprofile_pubsub2
       register: pubsub2_out
 
-    - name: Create Public Subnet 1c
+    - name: Public Subnet 1c
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
@@ -64,7 +52,7 @@
           Name: Vprofile_pubsub3
       register: pubsub3_out
       
-    - name: Create Private Subnet 1a
+    - name: Private Subnet 1a
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
@@ -76,7 +64,7 @@
           Name: Vprofile_privsub1
       register: privsub1_out
 
-    - name: Create Private Subnet 1b
+    - name: Private Subnet 1b
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
@@ -88,7 +76,7 @@
           Name: Vprofile_privsub2
       register: privsub2_out
 
-    - name: Create Private Subnet 1c
+    - name: Private Subnet 1c
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
@@ -100,3 +88,29 @@
           Name: Vprofile_privsub3
       register: privsub3_out
 
+    - name: Internet Gateway
+      ec2_vpc_igw:
+        vpc_id: "{{ vpcout.vpc.id }}"
+        region: "{{ region }}"
+        state: "{{state}}"
+        tags:
+          Name: "Vprofile_IGT"
+      register: igw
+    #- name: Debug IGW Output 
+    #  debug:
+    #    var: igw
+
+    - name: Set up public subnet route table
+      ec2_vpc_route_table:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        tags:
+          Name: Public
+        subnets:
+          - "{{ pubsub1_out.subnet.id }}"
+          - "{{ pubsub2_out.subnet.id }}"
+          - "{{ pubsub3_out.subnet_id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw.gateway_id }}"
+      register: public_route_table
