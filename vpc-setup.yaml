@@ -21,12 +21,12 @@
 
     - name: Creating Internet Gateway
       ec2_vpc_igw:
-        name: "Vprofile_IGT"
-        vpc_id: "{{vpcout.vpc.id}}"
+        vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{ region }}"
         state: present
+        tags:
+          Name: "Vprofile_IGT"
       register: igw
-      
-    - name: Debu VPC Output 
+    - name: Debug IGW Output 
       debug:
         var: igw
