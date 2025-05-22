@@ -142,5 +142,5 @@
           - "{{ privsub3_out.subnet.id }}"
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: "{{ nat_gateway.nat_gateway.id }}"
+            gateway_id: "{{ nat_gateway.nat_gateway_id }}"
       register: vprofile_private_RT
