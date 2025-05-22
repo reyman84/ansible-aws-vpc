@@ -37,11 +37,12 @@
       register: bastionHost_out
 
     - name: Create EC2 instance
-      ec2:
+      amazon.aws.ec2_instance:
         key_name: vprofile-key
+        vpc_subnet_id: "{{PubSub1a}}"
         region: "{{region}}"
         instance_type: t2.micro
-        image: "{{bastion_ami}}"
+        image_id: "{{bastion_ami}}"
         wait: yes
         wait_timeout: 300
         instance_tags:
