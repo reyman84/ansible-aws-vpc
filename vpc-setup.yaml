@@ -102,7 +102,7 @@
     #  debug:
     #    var: igw
 
-    - name: Set up public subnet route table
+    - name: Public route table
       ec2_vpc_route_table:
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
@@ -115,7 +115,7 @@
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw.gateway_id }}"
-      register: public_route_table
+      register: vprofile_public_RT
 
     - name: Elastic IP
       ec2_eip:
@@ -143,3 +143,27 @@
       register: nat_gateway
     #- debug:
     #    var: nat_gateway
+    
+    - name: Private route table
+      ec2_vpc_route_table:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        tags:
+          Name: Vprofile_RT
+        subnets:
+          - "{{ privsub1_out.subnet.id }}"
+          - "{{ privsub2_out.subnet.id }}"
+          - "{{ privsub3_out.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ nat_gateway.gateway_id }}"
+      register: vprofile_private_RT
+
+    - debug:
+        vars: "{{item}}"
+      loop:
+        - vpcout.vpc.id
+        - pubsub1_out.subnet.id
+        - pubsub2_out.subnet.id
+        - pubsub3_out.subnet.id
+        - 
