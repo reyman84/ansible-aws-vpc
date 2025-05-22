@@ -47,14 +47,8 @@
         image_id: "{{bastion_ami}}"
         wait: yes
         wait_timeout: 300
-        instance_tags:
+        count: 1
+        tags:
           Name: "BastionHost"
-          Project: "Vprofile"
-          Group: "DevOps Team"
-        exact_count: 1
-        count_tag:
-          Name: "BastionHost"
-          Project: "Vprofile"
-          Group: "DevOps Team"
-        #group_Id: "{{sg_out.group_id}}"
+        group_Id: "{{sg_out.group_id}}"
       register: bastionHost_out
