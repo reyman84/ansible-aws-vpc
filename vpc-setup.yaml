@@ -15,9 +15,6 @@
         tenancy: default
         state: "{{state}}"
       register: vpcout
-    - name: Debu VPC Output 
-      debug:
-        var: vpcout
 
     - name: Creating Internet Gateway
       ec2_vpc_igw:
@@ -30,3 +27,14 @@
     - name: Debug IGW Output 
       debug:
         var: igw
+
+    - name: Create Public Subnet 1a
+      ec2_vpc_subnet:
+        state: "{{state}}"
+        vpc_id: "{{ vpcout.vpc.id }}"
+        cidr: "{{PubSub1Cidr}}"
+        availability_zone: "{{zone1}}" 
+        map_public_ip_on_launch: true
+        tags:
+          Name: Public Subnet 1a
+      register: pubsub1_out
