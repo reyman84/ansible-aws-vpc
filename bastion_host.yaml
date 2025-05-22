@@ -34,9 +34,9 @@
             from_port: 22
             to_port: 22
             cidr_ip: "{{MYIP}}"
-      register: bastion-host-sg_out
+      register: sg_out
     - debug:
-       var: bastion-host-sg_out
+       var: sg_out
 
     - name: Create EC2 instance
       amazon.aws.ec2_instance:
@@ -56,5 +56,5 @@
           Name: "BastionHost"
           Project: "Vprofile"
           Group: "DevOps Team"
-        group_Id: "{{bastion-host-sg_out.group_id}}"
+        #group_Id: "{{sg_out.group_id}}"
       register: bastionHost_out
