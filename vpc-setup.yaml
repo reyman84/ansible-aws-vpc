@@ -121,4 +121,6 @@
       ec2_eip:
         state: present
         region: "{{region}}"
+        tags:
+          name: Vprofile_EIP
       register: eip
