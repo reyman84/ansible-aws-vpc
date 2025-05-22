@@ -1,0 +1,11 @@
+vpc_id: vpc-00d758d94c2159622
+PubSub1a: subnet-0fc616f9ef390a776
+PubSub1b: subnet-09d62ebfe9b523cc3
+PubSub1c: subnet-04708d219e64c7220
+PrivSub1a: subnet-0cbece01349646235
+PrivSub1b: subnet-0036e001ba111cf21
+PrivSub1c: subnet-00edb499bbb3a1fb7
+IGT: igw-07d57df98cb6917b1
+NAT: nat-046328500302ae958
+Pub_RT: rtb-0220c914b60b37548
+Priv_RT: rtb-0bdd8118d2c9e7f1f
