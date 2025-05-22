@@ -160,16 +160,17 @@
         - vprofile_public_RT.route_table.id
         - vprofile_private_RT.route_table.id
 
-    - set_fact:
-         vpc_id: "{{ vpcout.vpc.id }}"
-        //PubSub1a: "{{ pubsub1_out.subnet.id }}"
-        //PubSub1b: "{{ pubsub2_out.subnet.id }}"
-        //PubSub1c: "{{ pubsub3_out.subnet.id }}"
-        //PrivSub1a: "{{ privsub1_out.subnet.id }}"
-        //PrivSub1b: "{{ privsub2_out.subnet.id }}"
-        //PrivSub1c: "{{ privsub3_out.subnet.id }}"
-        //IGT: "{{ igw.gateway_id }}"
-        //NAT: "{{ nat_gateway.nat_gateway_id }}"
-        //Pub_RT: "{{ vprofile_public_RT.route_table.id }}"
-        //Priv_RT: "{{ vprofile_private_RT.route_table.id }}"
+    - name: Set facts for future tasks
+      set_fact:
+        vpc_id: "{{ vpcout.vpc.id }}"
+        PubSub1a: "{{ pubsub1_out.subnet.id }}"
+        PubSub1b: "{{ pubsub2_out.subnet.id }}"
+        PubSub1c: "{{ pubsub3_out.subnet.id }}"
+        PrivSub1a: "{{ privsub1_out.subnet.id }}"
+        PrivSub1b: "{{ privsub2_out.subnet.id }}"
+        PrivSub1c: "{{ privsub3_out.subnet.id }}"
+        IGT: "{{ igw.gateway_id }}"
+        NAT: "{{ nat_gateway.nat_gateway_id }}"
+        Pub_RT: "{{ vprofile_public_RT.route_table.id }}"
+        Priv_RT: "{{ vprofile_private_RT.route_table.id }}"
       cacheable: yes
