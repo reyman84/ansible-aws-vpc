@@ -42,17 +42,17 @@
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{bastion_ami}}"
-        wait: true
+        wait: yes
         wait_timeout: 300
         instance_tags:
           Name: "BastionHost"
           Project: "Vprofile"
           Group: "DevOps Team"
         exact_count: 1
-        count_tags:
+        count_tag:
           Name: "BastionHost"
           Project: "Vprofile"
           Group: "DevOps Team"
         groupId: "{{bastionHost_out.group_id}}"
-      register: bastionHost
+      register: bastionHost_out
             
