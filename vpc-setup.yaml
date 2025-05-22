@@ -28,6 +28,9 @@
           Name: Vprofile_pubsub1
       register: pubsub1_out
 
+    - debug:
+        var: pubsub1_out
+
     - name: Public Subnet 1b
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
@@ -106,10 +109,10 @@
         region: "{{region}}"
         tags:
           Name: Public
-        subnets:
-          - "{{ pubsub1_out.subnet.id }}"
-          - "{{ pubsub2_out.subnet.id }}"
-          - "{{ pubsub3_out.subnet_id }}"
+        #subnets:
+        #  - "{{ pubsub1_out.subnet.id }}"
+        #  - "{{ pubsub2_out.subnet.id }}"
+        #  - "{{ pubsub3_out.subnet_id }}"
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw.gateway_id }}"
