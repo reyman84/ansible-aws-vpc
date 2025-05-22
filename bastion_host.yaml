@@ -13,9 +13,8 @@
         name: vprofile-key
         region: "{{ region }}"
       register: key_out
-
-    - debug:
-        var: key_out
+    #- debug:
+    #   var: key_out
       
     - name: Save private key
       copy: 
@@ -30,7 +29,7 @@
         description: Creating Security Group for bastionHost
         region: "{{region}}"
         vpc_id: "{{vpc_id}}"
-        rule:
+        rules:
           - proto: tcp
             from_port: 22
             to_port: 22
