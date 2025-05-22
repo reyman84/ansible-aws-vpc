@@ -116,19 +116,6 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw.gateway_id }}"
       register: vprofile_public_RT
-
-    - name: Elastic IP
-      ec2_eip:
-        state: present
-        region: "{{region}}"
-        release_on_disassociation: yes
-        reuse_existing_ip_allowed: true
-        in_vpc: true
-        tags:
-          Name: Vprofile_EIP
-      register: eip
-    #- debug:
-    #    var: eip
       
     - name: Nat gateway
       ec2_vpc_nat_gateway:
@@ -137,7 +124,6 @@
         wait: yes
         region: "{{region}}"
         if_exist_do_not_create: true
-        allocation_id: "{{eip.allocation_id}}"
         tags:
           Name: Vprofile_NAT
       register: nat_gateway
