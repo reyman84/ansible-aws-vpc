@@ -39,3 +39,27 @@
         resource_tags:
           Name: Vprofile_pubsub1
       register: pubsub1_out
+
+    - name: Create Public Subnet 1b
+      ec2_vpc_subnet:
+        vpc_id: "{{ vpcout.vpc.id }}"
+        region: "{{region}}"
+        cidr: "{{PubSub2Cidr}}"
+        az: "{{zone2}}" 
+        map_public: true
+        state: "{{state}}"
+        resource_tags:
+          Name: Vprofile_pubsub2
+      register: pubsub2_out
+
+    - name: Create Public Subnet 1c
+      ec2_vpc_subnet:
+        vpc_id: "{{ vpcout.vpc.id }}"
+        region: "{{region}}"
+        cidr: "{{PubSub3Cidr}}"
+        az: "{{zone3}}" 
+        map_public: true
+        state: "{{state}}"
+        resource_tags:
+          Name: Vprofile_pubsub3
+      register: pubsub3_out
