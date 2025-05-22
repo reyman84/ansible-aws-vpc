@@ -122,5 +122,5 @@
         state: present
         region: "{{region}}"
         tags:
-          name: Vprofile_EIP
+          Name: Vprofile_EIP
       register: eip
