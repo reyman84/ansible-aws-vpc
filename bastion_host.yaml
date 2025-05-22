@@ -53,6 +53,5 @@
           Name: "BastionHost"
           Project: "Vprofile"
           Group: "DevOps Team"
-        groupId: "{{bastionHost_out.group_id}}"
+        group_Id: "{{bastionHost_out.group_id}}"
       register: bastionHost_out
-            
