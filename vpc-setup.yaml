@@ -70,7 +70,7 @@
         region: "{{region}}"
         cidr: "{{PrivSub1Cidr}}"
         az: "{{zone1}}" 
-        map_Private: false
+        map_public: false
         state: "{{state}}"
         resource_tags:
           Name: Vprofile_privsub1
@@ -82,7 +82,7 @@
         region: "{{region}}"
         cidr: "{{PrivSub5Cidr}}"
         az: "{{zone2}}" 
-        map_Private: false
+        map_public: false
         state: "{{state}}"
         resource_tags:
           Name: Vprofile_privsub2
@@ -94,7 +94,7 @@
         region: "{{region}}"
         cidr: "{{PrivSub6Cidr}}"
         az: "{{zone3}}" 
-        map_Private: false
+        map_public: false
         state: "{{state}}"
         resource_tags:
           Name: Vprofile_privsub3
