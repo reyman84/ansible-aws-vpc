@@ -160,7 +160,7 @@
         - vprofile_public_RT.route_table.id
         - vprofile_private_RT.route_table.id
 
-    - set_fact:
+    - set_facts:
         vpc_id: "{{ vpcout.vpc.id }}"
         //PubSub1a: "{{ pubsub1_out.subnet.id }}"
         //PubSub1b: "{{ pubsub2_out.subnet.id }}"
