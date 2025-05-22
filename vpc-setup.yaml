@@ -11,13 +11,7 @@
         cidr_block: "{{vpcCidr}}"
         region: "{{region}}"
         dns_support: yes
-        dns_hostname: yes
+        dns_hostnames: yes
         tenancy: default
         state: "{{state}}"
-      region: vpcout
-
-    - name: Create Internet Gateway
-      ec2_vpc_igw:
-        vpc_id: "{{vpc_name}}"
-        state: "{{state}}"
-      register: igw
+      register: vpcout
