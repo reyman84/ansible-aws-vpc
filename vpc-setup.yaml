@@ -17,3 +17,10 @@
       register: vpcout
     - debug:
         var: vpcout
+
+    - name: Creating Internet Gateway
+      ec2_vpc_igw:
+        name: "Vprofile_IGT"
+        vpc_id: vpcout.vpc.id
+        state: present
+      register: igw
