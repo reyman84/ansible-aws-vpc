@@ -47,6 +47,7 @@
         key_name: "vprofile-key"
         vpc_subnet_id: "{{ PubSub1a }}"
         security_group: "{{ sg_out.group_id }}"
+        wait_timeout: 300
         network:
           assign_public_ip: true
         tags:
