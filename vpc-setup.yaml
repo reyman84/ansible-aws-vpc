@@ -107,7 +107,7 @@
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
         tags:
-          Name: Vprofile_RT
+          Name: Vprofile_public_RT
         subnets:
           - "{{ pubsub1_out.subnet.id }}"
           - "{{ pubsub2_out.subnet.id }}"
@@ -127,15 +127,15 @@
         tags:
           Name: Vprofile_NAT
       register: nat_gateway
-    #- debug:
-    #   var: nat_gateway
+    - debug:
+       var: nat_gateway
     
     - name: Private route table
       ec2_vpc_route_table:
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
         tags:
-          Name: Vprofile_RT
+          Name: Vprofile_private_RT
         subnets:
           - "{{ privsub1_out.subnet.id }}"
           - "{{ privsub2_out.subnet.id }}"
@@ -144,11 +144,3 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ nat_gateway.nat_gateway.id }}"
       register: vprofile_private_RT
-
-    - debug:
-        vars: "{{item}}"
-      loop:
-        - vpcout.vpc.id
-        - pubsub1_out.subnet.id
-        - pubsub2_out.subnet.id
-        - pubsub3_out.subnet.id
