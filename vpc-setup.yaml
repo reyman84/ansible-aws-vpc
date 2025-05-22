@@ -146,7 +146,7 @@
       register: vprofile_private_RT
 
     - debug:
-        vars: "{{item}}"
+        var: "{{item}}"
       loop:
         - vpcout.vpc.id
         - privsub1_out.subnet.id
