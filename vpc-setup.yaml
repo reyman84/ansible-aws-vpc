@@ -139,4 +139,4 @@
           Name: Vprofile_NAT
       register: nat_gateway
     - debug:
-      var: nat_gateway
+        var: nat_gateway
