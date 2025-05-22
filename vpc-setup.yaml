@@ -117,3 +117,8 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw.gateway_id }}"
       register: public_route_table
+
+    - name: Elastic IP
+      ec2_eip:
+        state: present
+      register: eip
