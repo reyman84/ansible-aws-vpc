@@ -17,7 +17,8 @@
     - debug:
         var: key_out
       
-    #- name: Save private key
-    #  copy: 
-    #    content: "{{key_out}}"
-    #    dest: ./
+    - name: Save private key
+      copy: 
+        content: "{{key_out.private_key}}"
+        dest: "./vprofile-key.pem"
+      when: key_out.changed
