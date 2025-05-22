@@ -22,6 +22,7 @@
       ec2_vpc_igw:
         name: "Vprofile_IGT"
         vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{ region }}"
         state: present
       register: igw
       -debug:
