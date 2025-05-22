@@ -23,3 +23,17 @@
         dest: "./vprofile-key.pem"
         mode: 0600
       when: key_out.changed
+
+    - name: Create Security Group
+      ec2_group:
+        name: bastion-host-sg
+        description: Creating Security Group for bastionHost
+        region: "{{region}}"
+        vpc_id: "{{vpc_id}}"
+        rule:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr: "{{MYIP}}"
+      register: bastionHost_out
+            
