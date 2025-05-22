@@ -35,8 +35,8 @@
             to_port: 22
             cidr_ip: "{{MYIP}}"
       register: sg_out
-    - debug:
-       var: sg_out
+    #- debug:
+    #  var: sg_out
 
     - name: Create EC2 instance
       amazon.aws.ec2_instance:
