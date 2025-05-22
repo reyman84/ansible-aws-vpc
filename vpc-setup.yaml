@@ -33,7 +33,7 @@
         state: "{{state}}"
         vpc_id: "{{ vpcout.vpc.id }}"
         cidr: "{{PubSub1Cidr}}"
-        availability_zone: "{{zone1}}" 
+        az: "{{zone1}}" 
         map_public_ip_on_launch: true
         tags:
           Name: Public Subnet 1a
