@@ -30,11 +30,12 @@
 
     - name: Create Public Subnet 1a
       ec2_vpc_subnet:
-        state: "{{state}}"
         vpc_id: "{{ vpcout.vpc.id }}"
+        region: "{{region}}"
         cidr: "{{PubSub1Cidr}}"
         az: "{{zone1}}" 
-        map_public_ip_on_launch: true
-        tags:
-          Name: Public Subnet 1a
+        map_public: true
+        state: "{{state}}"
+        resource_tags:
+          Name: Vprofile_pubsub1
       register: pubsub1_out
