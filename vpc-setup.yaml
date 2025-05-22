@@ -121,6 +121,9 @@
       ec2_eip:
         state: present
         region: "{{region}}"
+        release_on_disassociation: yes
+        reuse_existing_ip_allowed: true
+        in_vpc: true
         tags:
           Name: Vprofile_EIP
       register: eip
