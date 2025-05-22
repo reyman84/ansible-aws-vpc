@@ -27,9 +27,8 @@
         resource_tags:
           Name: Vprofile_pubsub1
       register: pubsub1_out
-
-    - debug:
-        var: pubsub1_out
+    #- debug:
+    #    var: pubsub1_out
 
     - name: Public Subnet 1b
       ec2_vpc_subnet:
@@ -121,4 +120,5 @@
     - name: Elastic IP
       ec2_eip:
         state: present
+        region: "{{region}}"
       register: eip
