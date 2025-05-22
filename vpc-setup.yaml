@@ -68,7 +68,7 @@
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
-        cidr: "{{privsub4Cidr}}"
+        cidr: "{{PrivSub1Cidr}}"
         az: "{{zone1}}" 
         map_Private: false
         state: "{{state}}"
@@ -80,7 +80,7 @@
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
-        cidr: "{{privsub4Cidr}}"
+        cidr: "{{PrivSub5Cidr}}"
         az: "{{zone2}}" 
         map_Private: false
         state: "{{state}}"
@@ -92,7 +92,7 @@
       ec2_vpc_subnet:
         vpc_id: "{{ vpcout.vpc.id }}"
         region: "{{region}}"
-        cidr: "{{privsub4Cidr}}"
+        cidr: "{{PrivSub6Cidr}}"
         az: "{{zone3}}" 
         map_Private: false
         state: "{{state}}"
