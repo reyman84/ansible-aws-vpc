@@ -15,7 +15,8 @@
         tenancy: default
         state: "{{state}}"
       register: vpcout
-    - debug:
+    - name: Debu VPC Output 
+      debug:
         var: vpcout
 
     - name: Creating Internet Gateway
@@ -25,5 +26,7 @@
         region: "{{ region }}"
         state: present
       register: igw
-      -debug:
+      
+    - name: Debu VPC Output 
+      debug:
         var: igw
