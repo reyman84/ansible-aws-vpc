@@ -127,8 +127,8 @@
         tags:
           Name: Vprofile_NAT
       register: nat_gateway
-    #- debug:
-    #    var: nat_gateway
+    - debug:
+        var: nat_gateway
     
     - name: Private route table
       ec2_vpc_route_table:
