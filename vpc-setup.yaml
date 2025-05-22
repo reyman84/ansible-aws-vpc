@@ -134,7 +134,9 @@
         wait: yes
         region: "{{region}}"
         if_exist_do_not_create: true
-        eip_address: "{{eip}}"
+        allocation_id: "{{eip.allocation_id}}"
         tags:
           Name: Vprofile_NAT
-      register: new_nat_gateway
+      register: nat_gateway
+    - debug:
+      var: nat_gateway
