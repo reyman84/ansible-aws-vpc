@@ -3,7 +3,7 @@
   gather_facts: false
   tasks:
     - name: Import VPC setup file
-      include_vars: vpc-setup.yaml
+      include_vars: vars/vpc-setup.yaml
 
     - name: Import Output Variables
       include_vars: vars/output_vars
