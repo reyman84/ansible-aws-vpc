@@ -27,3 +27,16 @@
         dest: "./vpro-key.pem"
         mode: 0600
       when: vprokey_out.changed
+    
+    - name: Security Group for Load Balancer
+      ec2_group:
+        name: vpro-ELB-sg
+        description: Security Group for Load Balancer
+        region: "{{region}}"
+        vpc_id: "{{vpc_id}}"
+        rule:
+          - proto: tcp
+          - from_port: 80
+          - to_port: 80
+          - cidr: 0.0.0.0/0
+      register: sgLB_out
