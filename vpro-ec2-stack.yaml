@@ -17,7 +17,7 @@
       ec2_key:
         name: vpro-key
         region: "{{ region }}"
-      register: key_out
+      register: vprokey_out
     #- debug:
     #   var: vprokey_out
       
