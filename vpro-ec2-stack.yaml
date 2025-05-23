@@ -56,5 +56,5 @@
           - proto: tcp
             from_port: 22
             to_port: 22
-            groupID: "{{BastionSGid}}"
+            group_id: "{{BastionSGid}}"
       register: vproEC2sg_out
