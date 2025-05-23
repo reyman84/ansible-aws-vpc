@@ -10,7 +10,7 @@
 
     - name: Bastion Host key pair
       ec2_key:
-        name: bastion_key
+        name: Vprofile_bastion_key
         region: "{{ region }}"
       register: key_out
     #- debug:
@@ -19,7 +19,7 @@
     - name: Save Bastion Host private key
       copy: 
         content: "{{key_out.key.private_key}}"
-        dest: "./bastion_key.pem"
+        dest: "./Vprofile_bastion_key.pem"
         mode: 0600
       when: key_out.changed
 
@@ -44,7 +44,7 @@
         instance_type: t2.micro
         image_id: "{{ bastion_ami }}"
         region: "{{region}}"
-        key_name: "bastion_key"
+        key_name: "Vprofile_bastion_key"
         vpc_subnet_id: "{{ PubSub1a }}"
         security_group: "{{ sg_out.group_id }}"
         wait_timeout: 300
