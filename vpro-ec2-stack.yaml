@@ -30,13 +30,31 @@
     
     - name: Security Group for Load Balancer
       ec2_group:
-        name: vpro-ELB-sg
+        name: vproELB-sg
         description: Security Group for Load Balancer
         region: "{{region}}"
         vpc_id: "{{vpc_id}}"
         rule:
           - proto: tcp
-          - from_port: 80
-          - to_port: 80
-          - cidr: 0.0.0.0/0
+            from_port: 80
+            to_port: 80
+            cidr: 0.0.0.0/0
       register: sgLB_out
+
+    - name: Security Group for EC2 stack
+      ec2_group:
+        name: vpro-EC2-sg
+        description: Security Group for EC2 stack
+        region: "{{region}}"
+        vpc_id: "{{vpc_id}}"
+        rule:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            groupID: "{{sgLB_out.group_id}}"
+
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            groupID: "{{BastionSGid}}"
+      register: vproEC2sg_out
