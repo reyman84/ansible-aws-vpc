@@ -34,7 +34,7 @@
         description: Security Group for Load Balancer
         region: "{{region}}"
         vpc_id: "{{vpc_id}}"
-        rule:
+        rules:
           - proto: tcp
             from_port: 80
             to_port: 80
@@ -47,7 +47,7 @@
         description: Security Group for EC2 stack
         region: "{{region}}"
         vpc_id: "{{vpc_id}}"
-        rule:
+        rules:
           - proto: tcp
             from_port: 22
             to_port: 22
