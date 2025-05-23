@@ -8,7 +8,7 @@
     - name: Import Output Variables
       include_vars: vars/vpc_output_vars
 
-    - name: Create key pair
+    - name: Bastion Host key pair
       ec2_key:
         name: bastion_key
         region: "{{ region }}"
@@ -16,14 +16,14 @@
     #- debug:
     #   var: key_out
       
-    - name: Save private key
+    - name: Save Bastion Host private key
       copy: 
         content: "{{key_out.key.private_key}}"
         dest: "./bastion_key.pem"
         mode: 0600
       when: key_out.changed
 
-    - name: Create Security Group
+    - name: Security Group for Bastion Host
       ec2_group:
         name: bastion-host-sg
         description: Creating Security Group for bastionHost
@@ -38,7 +38,7 @@
     #- debug:
     #  var: sg_out
 
-    - name: Create EC2 instance
+    - name: Bastion Host Instance
       amazon.aws.ec2_instance:
         name: Bastion Host
         instance_type: t2.micro
