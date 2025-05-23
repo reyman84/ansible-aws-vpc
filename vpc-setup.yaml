@@ -144,9 +144,8 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ nat_gateway.nat_gateway_id }}"
       register: vprofile_private_RT
-
-    - debug:
-        var: "{{ item }}"
+    #- debug:
+    #   var: "{{ item }}"
       loop:
         - vpcout.vpc.id
         - pubsub1_out.subnet.id
