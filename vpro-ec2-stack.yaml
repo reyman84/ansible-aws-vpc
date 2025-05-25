@@ -39,7 +39,7 @@
             from_port: 80
             to_port: 80
             cidr_ip: 0.0.0.0/0
-      register: sgLB_out
+      register: sgELBSG_out
 
     - name: Security Group for EC2 stack
       amazon.aws.ec2_group:
@@ -52,11 +52,10 @@
           - proto: tcp
             from_port: 80
             to_port: 80
-            group_id: "{{ sgLB_out.group_id }}"
+            group_id: "{{ sgELBSG_out.group_id }}"
 
           - proto: tcp
             from_port: 22
             to_port: 22
-            #group_id: "{{ BastionSGid }}"
-            group_id: "{{ sgLB_out.group_id }}"
+            group_id: "{{ BastionSGid }}"
       register: vproStackSG_out
