@@ -157,7 +157,7 @@
           Owner: "Devops Team"
       register: db01_out
     - debug:
-        var: db01_out.instance_ids
+        var: db01_out.instances.network_interfaces.private_ip_address
 
     
     - name: Creating Load Balancer
@@ -177,3 +177,5 @@
           - protocol: tcp
             load_balancer_port: 80
             instance_port: 80
+
+      
