@@ -95,7 +95,7 @@
         image_id: "{{ tomcat_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
-        vpc_subnet_id: "{{ PrivSub2b }}"
+        vpc_subnet_id: "{{ PrivSub2Cidr }}"
         key_name: "vpro_key"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
