@@ -55,7 +55,6 @@
           Name: "Bastion Host"
           Environment: "Testing"
         wait: true
-      when: bastion_instance_info.instances | length == 0
       register: bastionHost_out
 
     - name: Insite/Update "BastionSGid" in vars/vpc_output_vars
