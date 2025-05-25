@@ -156,8 +156,8 @@
           Project: "Vprofile"
           Owner: "Devops Team"
       register: db01_out
-    - debug:
-        var: db01_out.instances[0].network_interfaces[0].private_ip_address
+    #- debug:
+    #   var: db01_out.instances[0].network_interfaces[0].private_ip_address
 
     
     - name: Creating Load Balancer
