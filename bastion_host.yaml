@@ -55,11 +55,3 @@
           Environment: Testing
         wait: true
       register: bastionHost_out
-    
-
-    #- name: Insert/Update "BastionSGid" in vars/vpc_output_vars
-    #  blockinfile:
-    #    path: vars/vpc_output_vars
-    #    backup: yes
-    #    block:
-    #      BastionSGid: {{sg_out.group_id}}
