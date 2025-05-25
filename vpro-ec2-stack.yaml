@@ -88,3 +88,20 @@
           Project: "Vprofile"
           Owner: "Devops Team"
       register: web01_out
+
+    - name: Tomcat EC2 Instance
+      amazon.aws.ec2_instance:
+        name: "App01"
+        image_id: "{{ tomcat_ami }}"
+        instance_type: "t2.micro"
+        region: "{{ region }}"
+        vpc_subnet_id: "{{ PrivSub1b }}"
+        key_name: "vpro_key"
+        security_group: "{{ vproStackSG_out.group_id }}"
+        wait: true
+        wait_timeout: 300
+        tags:
+          Name: "App01"
+          Project: "Vprofile"
+          Owner: "Devops Team"
+      register: app01_out
