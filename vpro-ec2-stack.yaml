@@ -23,17 +23,17 @@
       
     - name: Save private key
       copy: 
-        content: "{{vprokey_out.key.private_key}}"
+        content: "{{ vprokey_out.key.private_key }}"
         dest: "./vpro-key.pem"
         mode: 0600
       when: vprokey_out.changed
     
     - name: Security Group for Load Balancer
-      ec2_group:
+      amazon.aws.ec2_group:
         name: vproELB-sg
         description: Security Group for Load Balancer
-        region: "{{region}}"
-        vpc_id: "{{vpc_id}}"
+        region: "{{ region }}"
+        vpc_id: "{{ vpc_id }}"
         rules:
           - proto: tcp
             from_port: 80
@@ -42,21 +42,21 @@
       register: sgLB_out
 
     - name: Security Group for EC2 stack
-      ec2_group:
+      amazon.aws.ec2_group:
         name: vproStack-sg
         description: Security Group for EC2 stack
-        region: "{{region}}"
-        vpc_id: "{{vpc_id}}"
+        region: "{{ region }}"
+        vpc_id: "{{ vpc_id }}"
         purge_rules: no
         rules:
           - proto: tcp
             from_port: 80
             to_port: 80
-            group_id: "{{sgLB_out.group_id}}"
+            group_id: "{{ sgLB_out.group_id }}"
 
           - proto: tcp
             from_port: 22
             to_port: 22
-            #group_id: "{{BastionSGid}}"
-            group_id: "{{sgLB_out.group_id}}"
+            #group_id: "{{ BastionSGid }}"
+            group_id: "{{ sgLB_out.group_id }}"
       register: vproStackSG_out
