@@ -1,3 +1,4 @@
+region: us-east-1
 vpc_id: vpc-09d3083695e60a7e0
 PubSub1a: subnet-077b661c3d4c88fe2
 PubSub1b: subnet-080a4ebaecc836ea8
@@ -6,7 +7,7 @@ PrivSub1a: subnet-09d9ab64f1c20a10c
 PrivSub1b: subnet-0d089ba629808749a
 PrivSub1c: subnet-031efbc16785a3acc
 IGT: igw-0a2fa172252adce1a
-NAT: nat-0134c23d622402a6f
+NAT: nat-02128963f4260ddf5
 Pub_RT: rtb-06b160de47f3a5031
 Priv_RT: rtb-05d4868c56680c742
 # BEGIN ANSIBLE MANAGED BLOCK
