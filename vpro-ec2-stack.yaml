@@ -95,7 +95,7 @@
         image_id: "{{ tomcat_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
-        vpc_subnet_id: "{{ PrivSub2Cidr }}"
+        vpc_subnet_id: "{{ PrivSub1b }}"
         key_name: "vpro_key"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
@@ -112,7 +112,7 @@
         image_id: "{{ memcache_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
-        vpc_subnet_id: "{{ PrivSub3Cidr }}"
+        vpc_subnet_id: "{{ PrivSub1c }}"
         key_name: "vpro_key"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
@@ -129,7 +129,7 @@
         image_id: "{{ rmq_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
-        vpc_subnet_id: "{{ PrivSub1Cidr }}"
+        vpc_subnet_id: "{{ PrivSub1a }}"
         key_name: "vpro_key"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
@@ -146,7 +146,7 @@
         image_id: "{{ mysql_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
-        vpc_subnet_id: "{{ PrivSub1Cidr }}"
+        vpc_subnet_id: "{{ PrivSub1b }}"
         key_name: "vpro_key"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
