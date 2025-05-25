@@ -181,7 +181,7 @@
     - name: Insert/Update Host IP & Names in the file provision-stack/group_vars/hostsip 
       blockinfile:
         path: provision-stack/group_vars/hostsip
-        block: 
+        block: |
           web01: "{{ web01_out.instances[0].network_interfaces[0].private_ip_address }}"
           app01: "{{ app01_out.instances[0].network_interfaces[0].private_ip_address }}"
           rmq01: "{{ rmq01_out.instances[0].network_interfaces[0].private_ip_address }}"
