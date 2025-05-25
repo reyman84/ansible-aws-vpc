@@ -189,7 +189,7 @@
           db01: db01_out.instances[0].network_interfaces[0].private_ip_address
 
     - name: Copy login key to provision_stack directory
-      - copy:
+        copy:
           src: vpro_key
           destination: provision-stack/vpro_key
           mode: '0400'
