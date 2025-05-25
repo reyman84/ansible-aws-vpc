@@ -40,7 +40,7 @@
 
     - name: Bastion Host Instance
       amazon.aws.ec2_instance:
-        name: Bastion Host
+        name: "Bastion Host"
         instance_type: t2.micro
         image_id: "{{ bastion_ami }}"
         region: "{{region}}"
@@ -52,6 +52,6 @@
           assign_public_ip: true
         tags:
           Name: "Bastion Host"
-          Environment: Testing
+          Environment: "Testing"
         wait: true
       register: bastionHost_out
