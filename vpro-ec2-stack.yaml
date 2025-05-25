@@ -192,7 +192,7 @@
       copy:
         src: vpro_key
         destination: provision-stack/vpro_key
-        mode: '0400'
+        mode: 0400
 
     - name: Insert/Update inventory file provision-stack/inventory-vpro
       blockinfile:
