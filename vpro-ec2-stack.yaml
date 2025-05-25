@@ -61,13 +61,35 @@
             group_id: "{{ BastionSGid }}"
       register: vproStackSG_out
 
-    - name: Update Security Group with its own SG id
+    - name: Allow all traffic from everywhere within SG
       ec2_group:
         name: vproStack-sg
-        description: Allow port 22 from everywhere and all ports within SG
+        description: Allow all traffic from everywhere within SG
         region: "{{ region }}"
         vpc_id: "{{ vpc_id }}"
         purge_rules: no
         rules:
           - proto: all
             group_id: "{{ vproStackSG_out.group_id }}"
+
+    - name: Nginx EC2 Instance
+      ec2:
+        image: "{{ nginx_ami }}"
+        instance_type: "t2.micro"
+        region: "{{ region }}"
+        vpc_id: "{{ vpc_id }}"
+        vpc_subnet_id: "{{ PrivSub1Cidr }}"
+        key: "{{ vpro-key }}"
+        group_id: "{{ vproStackSG_out.group_id }}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "Web01"
+          Project: "Vprofile"
+          Owner: "Devops Team"
+        exact_count: 1
+        count_tag:
+          Name: "Web01"
+          Project: "Vprofile"
+          Owner: "Devops Team"
+      register: web01_out
