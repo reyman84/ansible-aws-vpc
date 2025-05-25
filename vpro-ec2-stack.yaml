@@ -40,7 +40,7 @@
             from_port: 80
             to_port: 80
             cidr_ip: 0.0.0.0/0
-      register: sgELBSG_out
+      register: vproELBsg_out
 
     - name: Security Group for EC2 stack
       amazon.aws.ec2_group:
@@ -158,4 +158,23 @@
       register: db01_out
     - debug:
         var: db01_out.instance_ids
-      
+
+    
+    - name: Creating Load Balancer
+      local_action:
+        module: ec2_elb_lb
+        name: "Vprofile-elb"
+        region: "{{ region }}"
+        state: "{{ present }}"
+        instance_ids:
+          - "{{ web01_out.instance_ids }}"
+        purge_instance_ids: true
+        security_group_ids: "{{ vproELBsg_out.group_id }}"
+        subnets: 
+          - "{{ PrivSub1a }}"
+          - "{{ PrivSub1b }}"
+          - "{{ PrivSub1c }}"
+        listeners:
+          - protocol: tcp
+            load_balancer_port: 80
+            instance_port: 80
