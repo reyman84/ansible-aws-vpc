@@ -139,3 +139,22 @@
           Project: "Vprofile"
           Owner: "Devops Team"
       register: rmq01_out
+
+    - name: MySQL EC2 Instance
+      amazon.aws.ec2_instance:
+        name: "db01"
+        image_id: "{{ mysql_ami }}"
+        instance_type: "t2.micro"
+        region: "{{ region }}"
+        vpc_subnet_id: "{{ PrivSub1Cidr }}"
+        key_name: "vpro_key"
+        security_group: "{{ vproStackSG_out.group_id }}"
+        wait: true
+        wait_timeout: 300
+        tags:
+          Name: "db01"
+          Project: "Vprofile"
+          Owner: "Devops Team"
+      register: db01_out
+    - debug:
+        var: db01_out
