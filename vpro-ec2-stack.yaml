@@ -181,6 +181,7 @@
     - name: Insert/Update Host IP & Names in the file provision-stack/group_vars/hostsip 
       blockinfile:
         path: provision-stack/group_vars/hostsip
+        marker: "# {mark} ANSIBLE HOSTS IP BLOCK"
         block: |
           web01: "{{ web01_out.instances[0].network_interfaces[0].private_ip_address }}"
           app01: "{{ app01_out.instances[0].network_interfaces[0].private_ip_address }}"
@@ -191,7 +192,7 @@
     - name: Copy login key to provision_stack directory
       copy:
         src: vpro_key.pem
-        dest: provision-stack/vpro_key
+        dest: provision-stack/vpro_key.pem
         mode: 0400
 
     - name: Insert/Update inventory file provision-stack/inventory-vpro

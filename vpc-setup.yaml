@@ -117,7 +117,7 @@
             gateway_id: "{{ igw.gateway_id }}"
       register: vprofile_public_RT
       
-    - name: Nat gateway
+    - name: NAT Gateway
       ec2_vpc_nat_gateway:
         state: "{{ state }}"
         subnet_id: "{{ pubsub1_out.subnet.id }}"
