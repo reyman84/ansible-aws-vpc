@@ -49,12 +49,18 @@
         vpc_subnet_id: "{{ PubSub1a }}"
         security_group: "{{ BastionSG_out.group_id }}"
         wait_timeout: 300
+        wait: true
         network:
           assign_public_ip: true
-        tags:
-          Name: "Bastion Host"
-          Environment: "Testing"
-        wait: true
+        instance_tags:
+          Name: "Web01"
+          Project: "Vprofile"
+          Owner: "Devops Team"
+        exact_count: 1
+        count_tag:
+          Name: "Web01"
+          Project: "Vprofile"
+          Owner: "Devops Team"
       register: bastionHost_out
 
     - name: Insite/Update "BastionSGid" in vars/vpc_output_vars
