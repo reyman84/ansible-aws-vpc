@@ -6,7 +6,7 @@ PrivSub1a: subnet-09d9ab64f1c20a10c
 PrivSub1b: subnet-0d089ba629808749a
 PrivSub1c: subnet-031efbc16785a3acc
 IGT: igw-0a2fa172252adce1a
-NAT: nat-0ae3404ddc94934a7
+NAT: nat-0134c23d622402a6f
 Pub_RT: rtb-06b160de47f3a5031
 Priv_RT: rtb-05d4868c56680c742
 BastionSGid: 

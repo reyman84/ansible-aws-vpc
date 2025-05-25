@@ -43,18 +43,19 @@
 
     - name: Security Group for EC2 stack
       ec2_group:
-        name: vpro-EC2-sg
+        name: vproStack-sg
         description: Security Group for EC2 stack
         region: "{{region}}"
         vpc_id: "{{vpc_id}}"
+        purge_rules: no
         rules:
           - proto: tcp
-            from_port: 22
-            to_port: 22
+            from_port: 80
+            to_port: 80
             groupID: "{{sgLB_out.group_id}}"
 
           - proto: tcp
             from_port: 22
             to_port: 22
             group_id: "{{BastionSGid}}"
-      register: vproEC2sg_out
+      register: vproStackSG_out
