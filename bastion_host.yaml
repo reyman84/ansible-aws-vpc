@@ -29,6 +29,7 @@
         description: Creating Security Group for bastionHost
         region: "{{region}}"
         vpc_id: "{{vpc_id}}"
+        purge_rules: no
         rules:
           - proto: tcp
             from_port: 22
