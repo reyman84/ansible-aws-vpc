@@ -58,7 +58,7 @@
 
     - name: Insite/Update "BastionSGid" in vars/vpc_output_vars
       blockinfile:
-        path: /vars/vpc_output_vars
+        path: vars/vpc_output_vars
         backup: yes
         block: |
           BastionSGid: "{{BastionSG_out.group_id}}"
