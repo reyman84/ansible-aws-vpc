@@ -87,9 +87,4 @@
           Name: "Web01"
           Project: "Vprofile"
           Owner: "Devops Team"
-        exact_count: 1
-        count_tag:
-          Name: "Web01"
-          Project: "Vprofile"
-          Owner: "Devops Team"
       register: web01_out
