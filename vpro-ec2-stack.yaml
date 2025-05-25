@@ -73,17 +73,17 @@
             group_id: "{{ vproStackSG_out.group_id }}"
 
     - name: Nginx EC2 Instance
-      ec2:
-        image: "{{ nginx_ami }}"
+      amazon.aws.ec2_instance:
+        name: "Web01"
+        image_id: "{{ nginx_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
-        vpc_id: "{{ vpc_id }}"
         vpc_subnet_id: "{{ PrivSub1Cidr }}"
-        key: "{{ vpro-key }}"
-        group_id: "{{ vproStackSG_out.group_id }}"
-        wait: yes
+        key_name: "{{ vpro-key }}"
+        security_group: "{{ vproStackSG_out.group_id }}"
+        wait: true
         wait_timeout: 300
-        instance_tags:
+        tags:
           Name: "Web01"
           Project: "Vprofile"
           Owner: "Devops Team"
@@ -93,3 +93,4 @@
           Project: "Vprofile"
           Owner: "Devops Team"
       register: web01_out
+      
