@@ -165,7 +165,7 @@
         module: ec2_elb_lb
         name: "Vprofile-elb"
         region: "{{ region }}"
-        state: "{{ present }}"
+        state: "{{ state }}"
         instance_ids:
           - "{{ web01_out.instance_ids }}"
         purge_instance_ids: true
