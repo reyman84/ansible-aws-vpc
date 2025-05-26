@@ -15,7 +15,7 @@
 
     - name: Create key pair
       ec2_key:
-        name: vpro_key
+        name: loginkey_vpro
         region: "{{ region }}"
       register: vprokey_out
     #- debug:
@@ -24,7 +24,7 @@
     - name: Save private key
       copy: 
         content: "{{ vprokey_out.key.private_key }}"
-        dest: "./vpro_key.pem"
+        dest: "./loginkey_vpro.pem"
         mode: 0600
       when: vprokey_out.changed
     
@@ -79,7 +79,7 @@
         instance_type: "t2.micro"
         region: "{{ region }}"
         vpc_subnet_id: "{{ PrivSub1a }}"
-        key_name: "vpro_key"
+        key_name: "loginkey_vpro"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
         wait_timeout: 300
@@ -96,7 +96,7 @@
         instance_type: "t2.micro"
         region: "{{ region }}"
         vpc_subnet_id: "{{ PrivSub1b }}"
-        key_name: "vpro_key"
+        key_name: "loginkey_vpro"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
         wait_timeout: 300
@@ -113,7 +113,7 @@
         instance_type: "t2.micro"
         region: "{{ region }}"
         vpc_subnet_id: "{{ PrivSub1c }}"
-        key_name: "vpro_key"
+        key_name: "loginkey_vpro"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
         wait_timeout: 300
@@ -130,7 +130,7 @@
         instance_type: "t2.micro"
         region: "{{ region }}"
         vpc_subnet_id: "{{ PrivSub1a }}"
-        key_name: "vpro_key"
+        key_name: "loginkey_vpro"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
         wait_timeout: 300
@@ -147,7 +147,7 @@
         instance_type: "t2.micro"
         region: "{{ region }}"
         vpc_subnet_id: "{{ PrivSub1b }}"
-        key_name: "vpro_key"
+        key_name: "loginkey_vpro"
         security_group: "{{ vproStackSG_out.group_id }}"
         wait: true
         wait_timeout: 300
@@ -191,8 +191,8 @@
 
     - name: Copy login key to provision_stack directory
       copy:
-        src: vpro_key.pem
-        dest: provision-stack/vpro_key.pem
+        src: loginkey_vpro.pem
+        dest: provision-stack/loginkey_vpro.pem
         mode: 0400
 
     - name: Insert/Update inventory file provision-stack/inventory-vpro
@@ -233,5 +233,5 @@
           
           [stack_inst:vars]
           ansible_user=ubuntu
-          ansible_ssh_private_key_file=vpro_key
+          ansible_ssh_private_key_file=loginkey_vpro
           #ansible_python_interpreter=/usr/bin/python3
