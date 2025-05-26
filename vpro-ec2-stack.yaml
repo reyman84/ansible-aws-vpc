@@ -74,7 +74,7 @@
 
     - name: Nginx EC2 Instance
       amazon.aws.ec2_instance:
-        name: "Web01"
+        name: "web01"
         image_id: "{{ nginx_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
@@ -84,14 +84,14 @@
         wait: true
         wait_timeout: 300
         tags:
-          Name: "Web01"
+          Name: "web01"
           Project: "Vprofile"
           Owner: "Devops Team"
       register: web01_out
 
     - name: Tomcat EC2 Instance
       amazon.aws.ec2_instance:
-        name: "App01"
+        name: "app01"
         image_id: "{{ tomcat_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
@@ -101,14 +101,14 @@
         wait: true
         wait_timeout: 300
         tags:
-          Name: "App01"
+          Name: "app01"
           Project: "Vprofile"
           Owner: "Devops Team"
       register: app01_out
 
     - name: Memcache EC2 Instance
       amazon.aws.ec2_instance:
-        name: "Mc01"
+        name: "mc01"
         image_id: "{{ memcache_ami }}"
         instance_type: "t2.micro"
         region: "{{ region }}"
@@ -118,7 +118,7 @@
         wait: true
         wait_timeout: 300
         tags:
-          Name: "Mc01"
+          Name: "mc01"
           Project: "Vprofile"
           Owner: "Devops Team"
       register: mc01_out
