@@ -1,0 +1,65 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Import VPC setup file
+      include_vars: vars/vpc_setup
+
+    - name: Import Output Variables
+      include_vars: vars/vpc_output_vars
+
+    - name: Bastion Host key pair
+      ec2_key:
+        name: bastion-key
+        region: "{{ region }}"
+      register: key_out
+    #- debug:
+    #   var: key_out
+      
+    - name: Save Bastion Host private key
+      copy: 
+        content: "{{key_out.key.private_key}}"
+        dest: "./bastion-key.pem"
+        mode: 0600
+      when: key_out.changed
+
+    - name: Security Group for Bastion Host
+      ec2_group:
+        name: bastion-host-sg
+        description: Creating Security Group for bastionHost
+        region: "{{region}}"
+        vpc_id: "{{vpc_id}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: "{{MYIP}}"
+      register: BastionSG_out
+    #- debug:
+    #  var: BastionSG_out
+
+    - name: Bastion Host Instance
+      amazon.aws.ec2_instance:
+        name: "Bastion Host"
+        instance_type: t2.micro
+        image_id: "{{ bastion_ami }}"
+        region: "{{region}}"
+        key_name: "bastion-key"
+        vpc_subnet_id: "{{ PubSub1a }}"
+        security_group: "{{ BastionSG_out.group_id }}"
+        wait_timeout: 300
+        network:
+          assign_public_ip: true
+        tags:
+          Name: "Bastion Host"
+          Environment: "Testing"
+        wait: true
+      register: bastionHost_out
+
+    - name: Insite/Update "BastionSGid" in vars/vpc_output_vars
+      blockinfile:
+        path: vars/vpc_output_vars
+        backup: yes
+        block: |
+          BastionSGid: "{{BastionSG_out.group_id}}"
