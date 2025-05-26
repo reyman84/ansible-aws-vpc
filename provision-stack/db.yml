@@ -33,6 +33,7 @@
         priv: '*.*:ALL'
         host: '%'
         state: present
+        column_case_sensitive: false
 
     - name: Creating accounts DB
       mysql_db:
