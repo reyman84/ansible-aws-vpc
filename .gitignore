@@ -1,6 +1,2 @@
 *.pem
 provision-stack/vpro_key.pem
-vars/vpc_output_vars.*vars/vpc_output_vars
-provision-stack/group_vars/hostsip
-provision-stack/inventory-vpro
-vars/vpc_output_vars
