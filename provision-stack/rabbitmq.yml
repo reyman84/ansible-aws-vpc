@@ -1,6 +1,6 @@
 ---
 - name: Install & Setup RabbitMQ with user
-  hosts: rmqsrvrp
+  hosts: rmqsrvgrp
   gather_facts: yes
   become: yes
 
