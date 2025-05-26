@@ -101,7 +101,7 @@
           register: archive_info
           tags:
             - deploy
-		
+
         - name: Copy ROOT dir with old_ROOT name
           shell: cp -r ROOT old_ROOT
           args:
@@ -117,7 +117,7 @@
             - /usr/local/tomcat8/webapps/ROOT.war
           tags:
             - deploy
-		
+
         - name: Try deploy artifact else restore from previous old_ROOT
           block:
             - name: Deploy vprofile artifact
@@ -163,6 +163,6 @@
 
   handlers:
     - name: Restart Tomcat
-      service: 
+      service:
         name: tomcat8
         state: restarted
