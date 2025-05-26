@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: Import VPC setup variables
-      vars: group_vars/hostsip
+      include_vars: group_vars/hostsip
     
     - name: Update hosts file for all hosts
       blockinfile:
