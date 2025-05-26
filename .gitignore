@@ -1,3 +1,5 @@
 *.pem
 provision-stack/vpro_key.pem
 vars/vpc_output_vars.*
+*.war
+*.sql
