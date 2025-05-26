@@ -159,7 +159,6 @@
     #- debug:
     #   var: db01_out.instances[0].network_interfaces[0].private_ip_address
 
-    
     - name: Creating Load Balancer
       local_action:
         module: ec2_elb_lb
