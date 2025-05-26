@@ -25,4 +25,4 @@
     - name: Restart mysql
       service:
         name: mysql
-        state: present
+        state: restarted
