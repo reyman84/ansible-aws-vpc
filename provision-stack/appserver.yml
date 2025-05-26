@@ -29,17 +29,18 @@
         shell: /bin/nologin
         home: /usr/local/tomcat8
 
-    - name: Create tomcat temp directory
+    - name: Create tomcat tmp directory
       file:
         path: /tmp/tomcat-8
-        dest: directory
+        state: directory
+        mode: '0755'
 
     - name: Extract tomcat
       unarchive:
         src: /tmp/tomcat-8.tar.gz
         dest: /tmp/tomcat-8/
         remote_src: yes
-        list_file: yes
+        list_files: yes
       register: unarchive_info
 
     - name: Show extracted folder
@@ -111,7 +112,7 @@
           file:
             path: "{{ item }}"
             state: absent
-            when: archive_info.changed
+          when: archive_info.changed
           loop:
             - /usr/local/tomcat8/webapps/ROOT
             - /usr/local/tomcat8/webapps/ROOT.war
