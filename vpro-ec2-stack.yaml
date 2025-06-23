@@ -169,9 +169,9 @@
         purge_instance_ids: true
         security_group_ids: "{{ vproELBsg_out.group_id }}"
         subnets: 
-          - "{{ PrivSub1a }}"
-          - "{{ PrivSub1b }}"
-          - "{{ PrivSub1c }}"
+          - "{{ PubSub1a }}"
+          - "{{ PubSub1b }}"
+          - "{{ PubSub1c }}"
         listeners:
           - protocol: tcp
             load_balancer_port: 80
